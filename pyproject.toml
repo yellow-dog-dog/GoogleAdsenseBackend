@@ -1,0 +1,25 @@
+[project]
+name = "googleadsensebackend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "aiomysql>=0.2.0",
+    "alembic>=1.13.3",
+    "asyncmy>=0.2.9",
+    "bcrypt>=4.2.0",
+    "cryptography>=43.0.1",
+    "fastapi[all]>=0.115.0",
+    "httpx>=0.27.2",
+    "passlib>=1.7.4",
+    "pydantic>=2.9.2",
+    "pymysql>=1.1.1",
+    "pytest-asyncio>=0.24.0",
+    "pytest>=8.3.3",
+    "python-dotenv>=1.0.1",
+    "python-jose>=3.3.0",
+    "sqlalchemy[asyncio]>=2.0.35",
+    "sqlmodel>=0.0.22",
+    "tortoise-orm[asyncmy]>=0.21.6",
+]
