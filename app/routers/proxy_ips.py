@@ -23,14 +23,14 @@ async def add_proxy_ip(proxy_ip_data: ProxyIpsIn, request: Request):
         return handle_exceptions(e)
 
 
-@proxy_ips_router.get("/{proxy_ip}", response_model=dict)
-async def check_proxy_ip(proxy_ip: str, request: Request):
+@proxy_ips_router.post("/check_ip", response_model=dict)
+async def check_proxy_ip(proxy_ip_data:ProxyIpsIn, request: Request):
     """检查代理IP是否存在"""
     session: AsyncSession = request.state.session
     try:
-        exists = await ProxyIpsService.check_proxy_ip_exists(session, proxy_ip)
+        exists = await ProxyIpsService.check_proxy_ip_exists(session, proxy_ip_data.proxy_ip,proxy_ip_data.domain)
         if not exists:
             raise HTTPException(status_code=404, detail="Proxy IP not found")
-        return create_response(message="Proxy IP exists", data={"proxy_ip": proxy_ip})
+        return create_response(message="Proxy IP exists", data={"proxy_ip": proxy_ip_data.proxy_ip,})
     except Exception as e:
         return handle_exceptions(e)
